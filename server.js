@@ -3,7 +3,15 @@ const app = express();
 const path = require("path");
 const rateLimit = require("express-rate-limit");
 const morgan = require("morgan");
+const cors = require("cors");
 const { searchGitHubRepositories } = require("./search");
+
+// Configure CORS
+app.use(cors({
+    origin: 'https://dev-explorer-lime.vercel.app',
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type']
+}));
 
 // Configure logging with morgan
 app.use(morgan("dev")); // 'dev' format for development: :method :url :status :response-time ms
