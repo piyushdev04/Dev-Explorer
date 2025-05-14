@@ -74,7 +74,7 @@ h1 span {
 }
 
 input, select, button {
-    width: 100%;
+    width: 96%;
     padding: 12px 2px;
     border-radius: 6px;
     border: 1px solid #333;
@@ -288,27 +288,161 @@ button:hover {
     padding: 0;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
+/* Mobile Responsive Styles */
+@media (max-width: 1024px) {
     .container {
         margin: 1rem;
         padding: 1.5rem;
     }
-    
+
+    .search-container {
+        padding: 1.5rem;
+    }
+
+    #results {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        margin: 0.5rem;
+        padding: 1rem;
+        width: auto;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .search-container {
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 0;
+        width: auto;
+    }
+
     .search-box {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
-    
+
     .search-group.full-width {
-        grid-column: span 1;
+        grid-column: auto;
     }
-    
+
     .filters {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
-    
+
+    .filters-title {
+        font-size: 0.85rem;
+    }
+
+    input, select, button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    button {
+        padding: 12px;
+        margin-top: 1rem;
+    }
+
     #results {
         grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 0.5rem;
+        width: auto;
+        box-sizing: border-box;
+    }
+
+    .project-card {
+        padding: 1rem;
+        width: auto;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .project-card h2 {
+        font-size: 1.2rem;
+    }
+
+    .project-description {
+        font-size: 0.85rem;
+        -webkit-line-clamp: 2;
+    }
+
+    .project-stats {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: flex-start;
+    }
+
+    .project-stat {
+        margin-right: 1rem;
+    }
+
+    .pagination {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .pagination button {
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 0;
+        border-radius: 0;
+        padding: 0.5rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .tagline {
+        font-size: 0.9rem;
+    }
+
+    .search-container {
+        padding: 0.75rem;
+        margin: 0.5rem 0;
+    }
+
+    #results {
+        padding: 0;
+    }
+
+    .project-card {
+        margin: 0;
+        border-radius: 6px;
+    }
+
+    .language-tag {
+        font-size: 0.75rem;
+    }
+
+    .project-stats {
+        font-size: 0.8rem;
+    }
+}
+
+/* Fix for iOS input styles */
+@supports (-webkit-touch-callout: none) {
+    input, select {
+        font-size: 16px;
     }
 }
 
