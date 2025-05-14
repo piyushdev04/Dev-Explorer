@@ -1,0 +1,28 @@
+{
+  "name": "open-source--best",
+  "version": "1.0.0",
+  "description": "Open Source Project Finder",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.8.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "fetch": "^1.1.0",
+    "morgan": "^1.10.0",
+    "node": "^20.19.0",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^2.7.0"
+  }
+}
