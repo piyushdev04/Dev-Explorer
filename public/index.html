@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevExplorer | Open Source Project Finder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dev<span>Explorer</span></h1>
+            <p class="tagline">Discover the perfect open-source projects to contribute to or learn from</p>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <div class="search-group full-width">
+                    <label for="searchQuery">Project Keywords</label>
+                    <input type="text" id="searchQuery" placeholder="Enter tech stack">
+                </div>
+                
+                <div class="search-group">
+                    <label for="language">Programming Language</label>
+                    <select id="language">
+                        <option value="">All Languages</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="typescript">TypeScript</option>
+                        <option value="python">Python</option>
+                        <option value="go">Go</option>
+                        <option value="java">Java</option>
+                        <option value="rust">Rust</option>
+                        <option value="cpp">C++</option>
+                        <option value="csharp">C#</option>
+                        <option value="php">PHP</option>
+                        <option value="ruby">Ruby</option>
+                        <option value="kotlin">Kotlin</option>
+                        <option value="swift">Swift</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="search-group" id="customLanguageContainer" style="display: none;">
+                    <label for="customLanguage">Custom Language</label>
+                    <input type="text" id="customLanguage" placeholder="Enter language name">
+                </div>
+            </div>
+            
+            <div class="filters-title" id="toggleFilters">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+                </svg>
+                Advanced Filters
+            </div>
+
+            <div class="filters" style="display: none;">
+                <div class="search-group">
+                    <label for="minStars">Minimum Stars</label>
+                    <input type="number" id="minStars" placeholder="e.g., 100" min="0">
+                </div>
+                
+                <div class="search-group">
+                    <label for="sort">Sort By</label>
+                    <select id="sort">
+                        <option value="stars">Stars</option>
+                        <option value="updated">Recently Updated</option>
+                        <option value="forks">Forks</option>
+                        <option value="help-wanted-issues">Help Wanted Issues</option>
+                    </select>
+                </div>
+                
+                <div class="search-group">
+                    <label for="projectsPerPage">Projects Per Page</label>
+                    <select id="projectsPerPage">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="goodFirstIssues">
+                    <label for="goodFirstIssues">Has "Good First Issues"</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="recentlyActive">
+                    <label for="recentlyActive">Recently Active</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="includeReadme">
+                    <label for="includeReadme">Include README Preview</label>
+                </div>
+            </div>
+            
+            <button onclick="searchProjects()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+                Discover Projects
+            </button>
+        </div>
+        
+        <div class="loader" id="loader">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.25-14.75A.75.75 0 0 1 9 2v1.25a.75.75 0 0 1-1.5 0V2a.75.75 0 0 1 .75-.75zM12.9 4.1a.75.75 0 0 1 0 1.06l-.94.94a.75.75 0 1 1-1.06-1.06l.94-.94a.75.75 0 0 1 1.06 0zm-10.74 0a.75.75 0 0 1 1.06 0l.94.94a.75.75 0 1 1-1.06 1.06l-.94-.94a.75.75 0 0 1 0-1.06zM8 4a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 4zm5.25 3.25a.75.75 0 0 1 0 1.5h-1.5a.75.75 0 0 1 0-1.5h1.5zm-9 0a.75.75 0 0 1 0 1.5h-1.5a.75.75 0 0 1 0-1.5h1.5zm7.97 3.75a.75.75 0 0 1 1.06 0l.94.94a.75.75 0 1 1-1.06 1.06l-.94-.94a.75.75 0 0 1 0-1.06zm-6.94 0a.75.75 0 0 1 0 1.06l-.94.94a.75.75 0 1 1-1.06-1.06l.94-.94a.75.75 0 0 1 1.06 0zM8 12a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 12z"/>
+            </svg>
+        </div>
+
+        <div id="error" class="error-message" style="display: none;"></div>
+        <div id="results"></div>
+        
+        <div class="pagination" id="pagination" style="display: none;">
+            <button id="prevPage" disabled>Previous</button>
+            <span id="pageInfo"></span>
+            <button id="nextPage">Next</button>
+        </div>
+        
+        <footer>
+            Created with <span style="color: #64D2FF;">♥</span> for open source | <a href="https://github.com/piyushdev04" target="_blank">View on GitHub</a>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
