@@ -5,6 +5,11 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    /* Ensure smooth font size transitions */
+    transition: font-size 0.3s ease;
+    /* Add viewport meta tag consideration */
+    width: 100%; /* Ensure body takes full viewport width */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .container {
@@ -14,6 +19,12 @@ body {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    /* Add responsive padding */
+    padding: 1rem; /* Default padding for smaller screens */
+    /* Ensure container uses full width on small screens */
+    width: calc(100% - 2rem); /* Use full width minus padding on small screens */
+    margin: 1rem auto; /* Adjust margin for smaller screens */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
 }
 
 header {
@@ -29,6 +40,8 @@ h1 {
     text-shadow: 0 0 10px rgba(150, 150, 150, 0.3);
     margin: 0;
     letter-spacing: -0.5px;
+    /* Adjust font size for smaller screens */
+    font-size: 1.75rem;
 }
 
 h1 span {
@@ -39,6 +52,8 @@ h1 span {
     color: #888;
     font-size: 1rem;
     margin-top: 0.5rem;
+    /* Adjust font size for smaller screens */
+    font-size: 0.9rem;
 }
 
 .search-container {
@@ -49,11 +64,15 @@ h1 span {
     border: solid #aaa 1px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
     margin-bottom: 2rem;
+    /* Adjust padding for smaller screens */
+    padding: 1rem;
+    padding-left: 1rem;
 }
 
 .search-box {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* Stack items on smaller screens */
+    grid-template-columns: 1fr;
     gap: 1rem;
 }
 
@@ -62,7 +81,8 @@ h1 span {
 }
 
 .search-group.full-width {
-    grid-column: span 2;
+    /* Remove full-width span on smaller screens */
+    grid-column: auto;
 }
 
 .search-group label {
@@ -81,6 +101,10 @@ input, select, button {
     font-size: 1rem;
     transition: all 0.2s ease;
     font-family: inherit;
+    /* Ensure inputs take full width on smaller screens */
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; /* Include padding and border in the element's total width */
 }
 
 input, select {
@@ -109,6 +133,9 @@ button {
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Adjust padding and margin for smaller screens */
+    padding: 12px;
+    margin-top: 1rem;
 }
 
 button:hover {
@@ -132,7 +159,8 @@ button:hover {
 
 .filters {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* Stack filters on smaller screens */
+    grid-template-columns: 1fr;
     gap: 1rem;
     margin-bottom: 1rem;
 }
@@ -149,8 +177,11 @@ button:hover {
 
 #results {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* Adjust grid columns for different screen sizes */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Default for smaller screens */
     gap: 1.5rem;
+    /* Add some padding on the sides for smaller screens */
+    padding: 0 0.5rem;
 }
 
 .project-card {
@@ -161,6 +192,10 @@ button:hover {
     border-left: 4px solid #64D2FF;
     display: flex;
     flex-direction: column;
+    /* Ensure cards take full width on very small screens */
+    width: auto;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .project-card:hover {
@@ -175,6 +210,8 @@ button:hover {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    /* Adjust font size for smaller screens */
+    font-size: 1.2rem;
 }
 
 .project-card a {
@@ -196,6 +233,9 @@ button:hover {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    /* Adjust font size and line clamp for smaller screens */
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2;
 }
 
 .project-stats {
@@ -206,11 +246,17 @@ button:hover {
     border-top: 1px solid #2a2a2a;
     color: #888;
     font-size: 0.85rem;
+    /* Allow stats to wrap on smaller screens */
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-start;
 }
 
 .project-stat {
     display: flex;
     align-items: center;
+    /* Add some margin between stats on smaller screens */
+    margin-right: 1rem;
 }
 
 .project-stat svg {
@@ -224,6 +270,8 @@ button:hover {
     font-size: 0.8rem;
     display: inline-block;
     margin-bottom: 8px;
+    /* Adjust font size for smaller screens */
+    font-size: 0.75rem;
 }
 
 .loader {
@@ -255,6 +303,10 @@ button:hover {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+    /* Stack pagination buttons on smaller screens */
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .pagination button {
@@ -263,6 +315,8 @@ button:hover {
     padding: 8px 16px;
     background: #222;
     color: #e0e0e0;
+    /* Adjust padding for smaller screens */
+    padding: 8px 16px;
 }
 
 .pagination button:hover {
@@ -288,67 +342,93 @@ button:hover {
     padding: 0;
 }
 
-/* Mobile Responsive Styles */
-@media (max-width: 1024px) {
+/* --- Mobile Responsive Styles --- */
+
+/* Extra small devices (phones, 480px and below) */
+@media (max-width: 480px) {
     .container {
-        margin: 1rem;
-        padding: 1.5rem;
+        margin: 0 auto; /* Center with auto margins */
+        border-radius: 0;
+        padding: 0.75rem; /* Slightly less padding on smallest screens */
+        width: calc(100% - 1.5rem); /* Full width minus padding */
+    }
+
+    h1 {
+        font-size: 1.5rem; /* Smaller heading on smallest screens */
+    }
+
+    .tagline {
+        font-size: 0.85rem;
     }
 
     .search-container {
-        padding: 1.5rem;
+        padding: 0.75rem;
+        margin: 0.5rem 0;
     }
 
     #results {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        padding: 0;
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .project-card {
+        margin: 0;
+        border-radius: 6px;
+        padding: 1rem;
+    }
+
+    .language-tag {
+        font-size: 0.7rem;
+    }
+
+    .project-stats {
+        font-size: 0.75rem;
+    }
+
+    .pagination button {
+        padding: 6px 12px; /* Smaller pagination buttons */
     }
 }
 
-@media (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
 
-    .container {
-        margin: 0.5rem;
+/* Tablet and larger phones (768px and below) */
+@media (max-width: 768px) {
+     .container {
         padding: 1rem;
-        width: auto;
-        max-width: 100%;
-        box-sizing: border-box;
+        margin: 1rem auto;
+        width: calc(100% - 2rem); /* Full width minus padding */
     }
 
     h1 {
         font-size: 2rem;
     }
 
+    .tagline {
+        font-size: 0.9rem;
+    }
+
     .search-container {
-        padding: 1rem;
-        border-radius: 8px;
-        margin: 0;
-        width: auto;
+        padding: 1.5rem;
+        padding-left: 1.5rem;
     }
 
     .search-box {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
+        grid-template-columns: 1fr; /* Stack items */
+        gap: 1rem;
     }
 
     .search-group.full-width {
-        grid-column: auto;
+        grid-column: auto; /* Remove full-width span */
     }
 
     .filters {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-    }
-
-    .filters-title {
-        font-size: 0.85rem;
+        grid-template-columns: 1fr; /* Stack filters */
+        gap: 1rem;
     }
 
     input, select, button {
+        width: 100%; /* Ensure full width */
         padding: 10px;
-        font-size: 0.9rem;
     }
 
     button {
@@ -357,18 +437,13 @@ button:hover {
     }
 
     #results {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust columns */
         gap: 1rem;
         padding: 0 0.5rem;
-        width: auto;
-        box-sizing: border-box;
     }
 
     .project-card {
         padding: 1rem;
-        width: auto;
-        margin: 0;
-        box-sizing: border-box;
     }
 
     .project-card h2 {
@@ -401,43 +476,120 @@ button:hover {
     }
 }
 
-@media (max-width: 480px) {
+/* Medium devices (desktops, 768px and up) */
+@media (min-width: 769px) {
     .container {
-        margin: 0;
-        border-radius: 0;
-        padding: 0.5rem;
+        padding: 1.5rem;
+        margin: 1rem auto;
+        width: calc(100% - 3rem); /* Adjust width for larger screens */
     }
 
     h1 {
-        font-size: 1.75rem;
+        font-size: 2.25rem;
     }
 
     .tagline {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     .search-container {
-        padding: 0.75rem;
-        margin: 0.5rem 0;
+        padding: 2rem;
+        padding-left: 1.5rem;
+    }
+
+    .search-box {
+        grid-template-columns: 1fr 1fr; /* Two columns */
+        gap: 1.5rem;
+    }
+
+    .search-group.full-width {
+        grid-column: span 2; /* Span two columns */
+    }
+
+    .filters {
+        grid-template-columns: 1fr 1fr 1fr; /* Three columns */
+        gap: 1.5rem;
+    }
+
+     input, select, button {
+         width: 96%; /* Revert to original width */
+         padding: 12px 2px; /* Revert to original padding */
+         box-sizing: content-box;
+    }
+
+    button {
+        padding: 14px;
+        margin-top: 1.5rem;
     }
 
     #results {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* More columns */
+        gap: 1.5rem;
         padding: 0;
     }
 
     .project-card {
+        padding: 1.5rem;
+        width: auto;
         margin: 0;
-        border-radius: 6px;
+        box-sizing: content-box;
     }
 
-    .language-tag {
-        font-size: 0.75rem;
+    .project-card h2 {
+        font-size: 1.4rem;
+    }
+
+    .project-description {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 3;
     }
 
     .project-stats {
-        font-size: 0.8rem;
+        flex-wrap: nowrap;
+        gap: initial;
+        justify-content: space-between;
+    }
+
+    .project-stat {
+        margin-right: 0;
+    }
+
+    .pagination {
+        flex-direction: row;
+        gap: initial;
+    }
+
+    .pagination button {
+         margin: 0 0.5rem;
     }
 }
+
+/* Large devices (large desktops, 1024px and up) */
+@media (min-width: 1025px) {
+    .container {
+        margin: 2rem auto;
+        padding: 2rem;
+        width: 1000px; /* Fixed max-width */
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    .search-container {
+        padding: 3rem;
+        padding-left: 1.5rem;
+    }
+
+    #results {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
 
 /* Fix for iOS input styles */
 @supports (-webkit-touch-callout: none) {
@@ -451,9 +603,24 @@ footer {
     margin-top: 2rem;
     color: #666;
     font-size: 1.2rem;
+    /* Adjust font size for smaller screens */
+    font-size: 1rem;
 }
 
 footer a {
     color: #888;
     text-decoration: none;
+}
+
+/* Adjust footer font size for larger screens */
+@media (min-width: 768px) {
+    footer {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    footer {
+        font-size: 1.2rem;
+    }
 }
