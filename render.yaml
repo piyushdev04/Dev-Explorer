@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: open-source-best-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: GITHUB_TOKEN
+        sync: false 
