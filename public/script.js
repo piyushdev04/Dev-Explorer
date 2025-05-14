@@ -3,6 +3,9 @@ let currentPage = 1;
 let totalPages = 1;
 let currentSearchParams = {};
 
+// Backend API URL - Replace this with your Render backend URL once deployed
+const BACKEND_API_URL = 'https://dev-explorer.onrender.com';
+
 // Initialize Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     // Language selector behavior
@@ -83,7 +86,7 @@ async function searchProjects(page = 1) {
             perPage
         });
         
-        const response = await fetch(`/search?${params.toString()}`);
+        const response = await fetch(`${BACKEND_API_URL}/search?${params.toString()}`);
         
         if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`);
