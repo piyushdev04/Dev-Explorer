@@ -5,11 +5,9 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    /* Ensure smooth font size transitions */
     transition: font-size 0.3s ease;
-    /* Add viewport meta tag consideration */
-    width: 100%; /* Ensure body takes full viewport width */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .container {
@@ -19,12 +17,10 @@ body {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1);
-    /* Add responsive padding */
-    padding: 1rem; /* Default padding for smaller screens */
-    /* Ensure container uses full width on small screens */
-    width: calc(100% - 2rem); /* Use full width minus padding on small screens */
-    margin: 1rem auto; /* Adjust margin for smaller screens */
-    box-sizing: border-box; /* Include padding and border in the element's total width */
+    padding: 1rem;
+    width: calc(100% - 2rem);
+    margin: 1rem auto;
+    box-sizing: border-box;
 }
 
 header {
@@ -40,7 +36,6 @@ h1 {
     text-shadow: 0 0 10px rgba(150, 150, 150, 0.3);
     margin: 0;
     letter-spacing: -0.5px;
-    /* Adjust font size for smaller screens */
     font-size: 1.75rem;
 }
 
@@ -52,7 +47,6 @@ h1 span {
     color: #888;
     font-size: 1rem;
     margin-top: 0.5rem;
-    /* Adjust font size for smaller screens */
     font-size: 0.9rem;
 }
 
@@ -64,14 +58,12 @@ h1 span {
     border: solid #aaa 1px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
     margin-bottom: 2rem;
-    /* Adjust padding for smaller screens */
     padding: 1rem;
     padding-left: 1rem;
 }
 
 .search-box {
     display: grid;
-    /* Stack items on smaller screens */
     grid-template-columns: 1fr;
     gap: 1rem;
 }
@@ -81,7 +73,6 @@ h1 span {
 }
 
 .search-group.full-width {
-    /* Remove full-width span on smaller screens */
     grid-column: auto;
 }
 
@@ -101,10 +92,9 @@ input, select, button {
     font-size: 1rem;
     transition: all 0.2s ease;
     font-family: inherit;
-    /* Ensure inputs take full width on smaller screens */
     width: 100%;
     padding: 10px;
-    box-sizing: border-box; /* Include padding and border in the element's total width */
+    box-sizing: border-box;
 }
 
 input, select {
@@ -133,7 +123,6 @@ button {
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Adjust padding and margin for smaller screens */
     padding: 12px;
     margin-top: 1rem;
 }
@@ -159,7 +148,6 @@ button:hover {
 
 .filters {
     display: grid;
-    /* Stack filters on smaller screens */
     grid-template-columns: 1fr;
     gap: 1rem;
     margin-bottom: 1rem;
@@ -177,10 +165,8 @@ button:hover {
 
 #results {
     display: grid;
-    /* Adjust grid columns for different screen sizes */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Default for smaller screens */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1.5rem;
-    /* Add some padding on the sides for smaller screens */
     padding: 0 0.5rem;
 }
 
@@ -192,7 +178,6 @@ button:hover {
     border-left: 4px solid #64D2FF;
     display: flex;
     flex-direction: column;
-    /* Ensure cards take full width on very small screens */
     width: auto;
     margin: 0;
     box-sizing: border-box;
@@ -210,7 +195,6 @@ button:hover {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    /* Adjust font size for smaller screens */
     font-size: 1.2rem;
 }
 
@@ -233,7 +217,6 @@ button:hover {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    /* Adjust font size and line clamp for smaller screens */
     font-size: 0.85rem;
     -webkit-line-clamp: 2;
 }
@@ -246,7 +229,6 @@ button:hover {
     border-top: 1px solid #2a2a2a;
     color: #888;
     font-size: 0.85rem;
-    /* Allow stats to wrap on smaller screens */
     flex-wrap: wrap;
     gap: 0.5rem;
     justify-content: flex-start;
@@ -255,7 +237,6 @@ button:hover {
 .project-stat {
     display: flex;
     align-items: center;
-    /* Add some margin between stats on smaller screens */
     margin-right: 1rem;
 }
 
@@ -270,7 +251,6 @@ button:hover {
     font-size: 0.8rem;
     display: inline-block;
     margin-bottom: 8px;
-    /* Adjust font size for smaller screens */
     font-size: 0.75rem;
 }
 
@@ -303,7 +283,6 @@ button:hover {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
-    /* Stack pagination buttons on smaller screens */
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
@@ -315,7 +294,6 @@ button:hover {
     padding: 8px 16px;
     background: #222;
     color: #e0e0e0;
-    /* Adjust padding for smaller screens */
     padding: 8px 16px;
 }
 
@@ -328,7 +306,6 @@ button:hover {
     cursor: not-allowed;
 }
 
-/* Dark mode toggle */
 .theme-toggle {
     position: absolute;
     top: 0;
@@ -344,17 +321,16 @@ button:hover {
 
 /* --- Mobile Responsive Styles --- */
 
-/* Extra small devices (phones, 480px and below) */
 @media (max-width: 480px) {
     .container {
-        margin: 0 auto; /* Center with auto margins */
+        margin: 0 auto;
         border-radius: 0;
-        padding: 0.75rem; /* Slightly less padding on smallest screens */
-        width: calc(100% - 1.5rem); /* Full width minus padding */
+        padding: 0.75rem;
+        width: calc(100% - 1.5rem);
     }
 
     h1 {
-        font-size: 1.5rem; /* Smaller heading on smallest screens */
+        font-size: 1.5rem;
     }
 
     .tagline {
@@ -368,7 +344,7 @@ button:hover {
 
     #results {
         padding: 0;
-        grid-template-columns: 1fr; /* Single column layout */
+        grid-template-columns: 1fr;
     }
 
     .project-card {
@@ -386,17 +362,17 @@ button:hover {
     }
 
     .pagination button {
-        padding: 6px 12px; /* Smaller pagination buttons */
+        padding: 6px 12px;
     }
 }
 
 
-/* Tablet and larger phones (768px and below) */
+/* Tablet and larger phones */
 @media (max-width: 768px) {
      .container {
         padding: 1rem;
         margin: 1rem auto;
-        width: calc(100% - 2rem); /* Full width minus padding */
+        width: calc(100% - 2rem);
     }
 
     h1 {
@@ -413,21 +389,21 @@ button:hover {
     }
 
     .search-box {
-        grid-template-columns: 1fr; /* Stack items */
+        grid-template-columns: 1fr;
         gap: 1rem;
     }
 
     .search-group.full-width {
-        grid-column: auto; /* Remove full-width span */
+        grid-column: auto;
     }
 
     .filters {
-        grid-template-columns: 1fr; /* Stack filters */
+        grid-template-columns: 1fr;
         gap: 1rem;
     }
 
     input, select, button {
-        width: 100%; /* Ensure full width */
+        width: 100%;
         padding: 10px;
     }
 
@@ -437,7 +413,7 @@ button:hover {
     }
 
     #results {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust columns */
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 1rem;
         padding: 0 0.5rem;
     }
@@ -476,12 +452,12 @@ button:hover {
     }
 }
 
-/* Medium devices (desktops, 768px and up) */
+/* Medium devices (768px) */
 @media (min-width: 769px) {
     .container {
         padding: 1.5rem;
         margin: 1rem auto;
-        width: calc(100% - 3rem); /* Adjust width for larger screens */
+        width: calc(100% - 3rem);
     }
 
     h1 {
@@ -498,22 +474,22 @@ button:hover {
     }
 
     .search-box {
-        grid-template-columns: 1fr 1fr; /* Two columns */
+        grid-template-columns: 1fr 1fr;
         gap: 1.5rem;
     }
 
     .search-group.full-width {
-        grid-column: span 2; /* Span two columns */
+        grid-column: span 2;
     }
 
     .filters {
-        grid-template-columns: 1fr 1fr 1fr; /* Three columns */
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 1.5rem;
     }
 
      input, select, button {
-         width: 96%; /* Revert to original width */
-         padding: 12px 2px; /* Revert to original padding */
+         width: 96%;
+         padding: 12px 2px;
          box-sizing: content-box;
     }
 
@@ -523,7 +499,7 @@ button:hover {
     }
 
     #results {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* More columns */
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 1.5rem;
         padding: 0;
     }
@@ -564,12 +540,12 @@ button:hover {
     }
 }
 
-/* Large devices (large desktops, 1024px and up) */
+/* Large devices (1024px) */
 @media (min-width: 1025px) {
     .container {
         margin: 2rem auto;
         padding: 2rem;
-        width: 1000px; /* Fixed max-width */
+        width: 1000px;
     }
 
     h1 {
@@ -603,7 +579,6 @@ footer {
     margin-top: 2rem;
     color: #666;
     font-size: 1.2rem;
-    /* Adjust font size for smaller screens */
     font-size: 1rem;
 }
 
@@ -612,7 +587,7 @@ footer a {
     text-decoration: none;
 }
 
-/* Adjust footer font size for larger screens */
+/*footer for larger screens */
 @media (min-width: 768px) {
     footer {
         font-size: 1.1rem;
