@@ -3,7 +3,7 @@ let currentPage = 1;
 let totalPages = 1;
 let currentSearchParams = {};
 
-// Backend API URL - Replace this with your Render backend URL once deployed
+// Backend API URL
 const BACKEND_API_URL = 'https://dev-explorer.onrender.com';
 
 // Initialize Event Listeners
