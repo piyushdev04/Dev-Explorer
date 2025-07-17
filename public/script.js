@@ -14,18 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.value === 'other' ? 'block' : 'none';
     });
     
-    // Toggle advanced filters
-    document.getElementById('toggleFilters').addEventListener('click', function() {
-        const filtersDiv = document.querySelector('.filters');
-        const isVisible = filtersDiv.style.display !== 'none';
-        
-        filtersDiv.style.display = isVisible ? 'none' : 'grid';
-        
-        // Update icon (rotate it when open)
-        const icon = this.querySelector('svg');
-        icon.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)';
-    });
-    
     // Add keyboard navigation
     document.getElementById('searchQuery').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
@@ -44,34 +32,42 @@ async function searchProjects(page = 1) {
     document.getElementById('loader').style.display = 'block';
     document.getElementById('error').style.display = 'none';
     document.getElementById('results').innerHTML = '';
-    
+
     // Get search parameters
     const query = document.getElementById('searchQuery').value.trim();
     let language = document.getElementById('language').value;
     const customLanguage = document.getElementById('customLanguage').value.trim();
-    
-    // Use custom language if provided
-    if (language === 'other' && customLanguage) {
-        language = customLanguage;
-    }
-    
-    // Get advanced filters
     const minStars = document.getElementById('minStars').value.trim();
     const sort = document.getElementById('sort').value;
     const perPage = document.getElementById('projectsPerPage')?.value || 10;
     const goodFirstIssues = document.getElementById('goodFirstIssues').checked;
     const recentlyActive = document.getElementById('recentlyActive').checked;
     const includeReadme = document.getElementById('includeReadme').checked;
-    
+
+    // Validation: All fields required
+    if (!query || !language || (language === 'other' && !customLanguage) || !minStars || !sort || !perPage) {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('error').textContent = 'Please fill in all required fields.';
+        document.getElementById('error').style.display = 'block';
+        return;
+    }
+    // For checkboxes, require at least one to be checked (if that's your intent)
+    if (!goodFirstIssues && !recentlyActive && !includeReadme) {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('error').textContent = 'Please check at least one advanced filter checkbox.';
+        document.getElementById('error').style.display = 'block';
+        return;
+    }
+
     // Save current search parameters
     currentSearchParams = {
         query, language, customLanguage, minStars, 
         sort, perPage, goodFirstIssues, recentlyActive, includeReadme
     };
-    
+
     // Update current page
     currentPage = page;
-    
+
     try {
         // Create URL with search parameters
         const params = new URLSearchParams({
@@ -85,22 +81,22 @@ async function searchProjects(page = 1) {
             page: page.toString(),
             perPage
         });
-        
+
         const response = await fetch(`${BACKEND_API_URL}/search?${params.toString()}`);
-        
+
         if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`);
         }
-        
+
         const data = await response.json();
-        
+
         // Calculate pagination
         totalPages = Math.ceil(Math.min(data.total_count || 0, 1000) / perPage); // GitHub API limits to 1000 results
-        
+
         // Display results
         displayResults(data.items || [], data.total_count);
         updatePaginationControls();
-        
+
     } catch (error) {
         console.error('Error fetching projects:', error);
         document.getElementById('error').textContent = `Failed to fetch repositories: ${error.message}`;
