@@ -4,7 +4,7 @@ let totalPages = 1;
 let currentSearchParams = {};
 
 // Backend API URL
-const BACKEND_API_URL = 'https://dev-explorer.onrender.com';
+const BACKEND_API_URL = 'https://dev-explorer-kz2j.onrender.com';
 
 // Initialize Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
