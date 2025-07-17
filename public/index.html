@@ -22,12 +22,12 @@
             <div class="search-box">
                 <div class="search-group full-width">
                     <label for="searchQuery">Project Keywords</label>
-                    <input type="text" id="searchQuery" placeholder="Project Type [Machine Learning, Cloud Native, Blockchain, etc.]">
+                    <input type="text" id="searchQuery" placeholder="Project Type [Machine Learning, Cloud Native, Blockchain, etc.]" required>
                 </div>
                 
                 <div class="search-group">
                     <label for="language">Programming Language</label>
-                    <select id="language">
+                    <select id="language" required>
                         <option value="">All Languages</option>
                         <option value="javascript">JavaScript</option>
                         <option value="typescript">TypeScript</option>
@@ -47,7 +47,7 @@
 
                 <div class="search-group" id="customLanguageContainer" style="display: none;">
                     <label for="customLanguage">Custom Language</label>
-                    <input type="text" id="customLanguage" placeholder="Enter language name">
+                    <input type="text" id="customLanguage" placeholder="Enter language name" required>
                 </div>
             </div>
             
@@ -58,15 +58,15 @@
                 Advanced Filters
             </div>
 
-            <div class="filters" style="display: none;">
+            <div class="filters" style="display: grid;">
                 <div class="search-group">
                     <label for="minStars">Minimum Stars</label>
-                    <input type="number" id="minStars" placeholder="e.g., 100" min="0">
+                    <input type="number" id="minStars" placeholder="e.g., 100" min="0" required>
                 </div>
                 
                 <div class="search-group">
                     <label for="sort">Sort By</label>
-                    <select id="sort">
+                    <select id="sort" required>
                         <option value="stars">Stars</option>
                         <option value="updated">Recently Updated</option>
                         <option value="forks">Forks</option>
@@ -76,7 +76,7 @@
                 
                 <div class="search-group">
                     <label for="projectsPerPage">Projects Per Page</label>
-                    <select id="projectsPerPage">
+                    <select id="projectsPerPage" required>
                         <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="30">30</option>
@@ -85,17 +85,17 @@
                 </div>
                 
                 <div class="checkbox-group">
-                    <input type="checkbox" id="goodFirstIssues">
+                    <input type="checkbox" id="goodFirstIssues" required>
                     <label for="goodFirstIssues">Has "Good First Issues"</label>
                 </div>
                 
                 <div class="checkbox-group">
-                    <input type="checkbox" id="recentlyActive">
+                    <input type="checkbox" id="recentlyActive" required>
                     <label for="recentlyActive">Recently Active</label>
                 </div>
                 
                 <div class="checkbox-group">
-                    <input type="checkbox" id="includeReadme">
+                    <input type="checkbox" id="includeReadme" required>
                     <label for="includeReadme">Include README Preview</label>
                 </div>
             </div>
